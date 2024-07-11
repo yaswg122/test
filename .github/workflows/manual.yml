@@ -31,4 +31,6 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
     - name: print the workspace
-      run: echo $GITHUB_WORKSPACE
+      run: 
+        echo $GITHUB_WORKSPACE,
+        exho pwd
