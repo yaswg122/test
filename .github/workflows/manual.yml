@@ -33,4 +33,4 @@ jobs:
     - name: print the workspace
       run: 
         echo $GITHUB_WORKSPACE,
-        echo pwd
+        pwd
