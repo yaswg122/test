@@ -33,5 +33,5 @@ jobs:
     - name: print the workspace
       run: echo $GITHUB_WORKSPACE
     - name: print the pwd
-      run: epwd
+      run: pwd
         
