@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: run a job
-        run: echo successful ${{ env_prod}}
+        run: echo successful ${{ env.env_prod}}
       - name: Define and use my_test variable
         run: |
           sindhu="settlement_racha"
