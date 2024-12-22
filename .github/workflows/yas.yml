@@ -13,11 +13,11 @@ jobs:
 
     steps:
       - name: run a job
-        run: echo successful {{$env.env_prod}} 
+        run: echo successful ${{env.env_prod}} 
       - name: Define and use my_test variable
         run: |
           my_test="testing"  # Define the variable
-          echo "The value of my_test is $my_test {{github.job.jobid}}"  # Use the variable
+          echo "The value of my_test is $my_test {{steps.job_id.outputs.result}}"  # Use the variable
 
     
   
