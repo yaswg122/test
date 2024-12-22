@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   #workflow_dispatch:
     env:
-      env_prod = prod
+      env_prod = "prod"
     
 jobs:
   build:
