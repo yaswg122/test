@@ -18,7 +18,6 @@ jobs:
         run: echo successful ${{ env.env_prod }}
       - name: Define and use my_test variable
         run: |
-          my_test="testing"  # Define the variable
           sindhu = "settlement_racha"
           echo "The value of my_test is $my_test $sindhu"  # Use the variable
       - name: Display GitHub context variables
