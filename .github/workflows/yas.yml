@@ -19,7 +19,8 @@ jobs:
       - name: Define and use my_test variable
         run: |
           my_test="testing"  # Define the variable
-          echo "The value of my_test is $my_test ${{ github.run_id }}"  # Use the variable
+          sindhu = "settlement_racha"
+          echo "The value of my_test is $my_test $sindhu"  # Use the variable
       - name: Display GitHub context variables
         run: |
           echo "Triggered by: ${{ github.actor }}"
