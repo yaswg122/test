@@ -4,14 +4,17 @@ on:
   #push:
     branches: [ main ]
   #workflow_dispatch:
-    env = test
+    env:
+    env_prod = prod
+    var: 
+    var_prod = testing_prod
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: run a job
-        run: echo successful {{$env}}
+        run: echo successful {{$env.env_prod}} & {{var.var_prod}}
 
     
   
