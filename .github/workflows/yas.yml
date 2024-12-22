@@ -5,9 +5,9 @@ on:
     branches: [ main ]
   #workflow_dispatch:
     env:
-    env_prod = prod
+      env_prod = prod
     var: 
-    var_prod = testing_prod
+      var_prod = testing_prod
 jobs:
   build:
     runs-on: ubuntu-latest
