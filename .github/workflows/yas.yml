@@ -6,14 +6,15 @@ on:
   #workflow_dispatch:
     env:
       env_prod = prod
-    My_var = testing
+    
 jobs:
   build:
     runs-on: ubuntu-20.04
 
     steps:
       - name: run a job
-        run: echo successful {{$env.env_prod}} & {{$My_var}}
+        My_var = testing        
+        run: echo successful {{$env.env_prod}} & {{$My_var}} {{$github.jobid}}
 
     
   
