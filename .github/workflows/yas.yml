@@ -4,12 +4,14 @@ on:
   push:
     branches: [ main ]
   #workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-20.04 
+    
     env:
       env_prod = " prod "
     
-jobs:
-  build:
-    runs-on: ubuntu-20.04
 
     steps:
       - name: run a job
