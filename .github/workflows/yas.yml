@@ -10,7 +10,7 @@ on:
       var_prod = testing_prod
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: Ubuntu 24.04
 
     steps:
       - name: run a job
