@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04 
     
     env:
-      env_prod = " prod "
+      env_prod : " prod "
     
 
     steps:
