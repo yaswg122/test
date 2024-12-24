@@ -3,19 +3,18 @@ name: demo
 on:
   push:
     branches: [ main ]
-  #workflow_dispatch:
   workflow_dispatch:
     inputs:
       environment:
         description: 'Environment to deploy to' # A short description of the parameter
-        required: true                        # Whether this parameter is mandatory
-        default: 'production'        
-      options:
+        required: true                         # Whether this parameter is mandatory
+        type: choice                           # Specifies that this is a dropdown
+        options:                               # Defines the options for the dropdown
           - development
           - staging
           - production
-            default: production
-        
+        default: production   
+         
   
 jobs:
   build:
