@@ -9,7 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-20.04 
     
-    env: " prod "
+    env:
+      env_prod : " prod "
     
 
     steps:
