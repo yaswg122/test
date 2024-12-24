@@ -4,6 +4,12 @@ on:
   push:
     branches: [ main ]
   #workflow_dispatch:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to' # A short description of the parameter
+        required: true                        # Whether this parameter is mandatory
+        default: 'production'      
   
 jobs:
   build:
