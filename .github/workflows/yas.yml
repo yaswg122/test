@@ -9,7 +9,13 @@ on:
       environment:
         description: 'Environment to deploy to' # A short description of the parameter
         required: true                        # Whether this parameter is mandatory
-        default: 'production'      
+        default: 'production'        
+      options:
+          - development
+          - staging
+          - production
+            default: production
+        
   
 jobs:
   build:
