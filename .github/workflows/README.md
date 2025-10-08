@@ -1,68 +1,49 @@
-## Overview
----
-This Terraform module provisions an **AWS ElastiCache Serverless for Redis** environment.  
-It creates a KMS key, security group, Redis users (from AWS Secrets Manager), a user group, and the Redis Serverless cluster itself.  
-It is designed to simplify secure, multi-user Redis deployments across multiple environments.
+# Terraform Module: Redis Serverless (AWS ElastiCache)
+
+This Terraform module provisions a **Redis Serverless cluster** in AWS using ElastiCache, including:
+
+- KMS key for encryption
+- Security group for controlled access
+- Redis users and user groups from Secrets Manager
+- Redis Serverless cluster with configurable snapshot and engine version
 
 ---
 
-## Requirements
+## Resources Created
 
-Before using this module, ensure the following AWS resources already exist:
-- A **VPC** with at least two **private subnets**.
-- **AWS Secrets Manager** entries for each Redis user credential you plan to reference.
-
----
-
-## Providers
-
-| Name | Version |
-|------|----------|
-| <a name="provider_aws"></a> aws | >= 5.48.0 |
+| Resource | Description |
+|----------|-------------|
+| `aws_kms_key.redis` | KMS key for encrypting Redis cluster data |
+| `aws_kms_alias.redis` | Alias for the Redis KMS key |
+| `aws_security_group.redis` | Security group controlling inbound/outbound access to Redis |
+| `aws_elasticache_user` | Redis users created from Secrets Manager secrets |
+| `aws_elasticache_user_group` | User group containing all Redis users |
+| `aws_elasticache_serverless_cache.redis_serverless` | Serverless Redis cluster |
 
 ---
 
-## Modules
+## Variables
 
-No submodules used.
-
----
-
-## Resources
-
-| Name | Type |
-|------|------|
-| aws_kms_key.redis | aws_kms_key |
-| aws_kms_alias.redis | aws_kms_alias |
-| aws_security_group.redis | aws_security_group |
-| aws_elasticache_user.redis_user | aws_elasticache_user |
-| aws_elasticache_user_group.user_group | aws_elasticache_user_group |
-| aws_elasticache_serverless_cache.redis_serverless | aws_elasticache_serverless_cache |
-| data.aws_secretsmanager_secret.redis_user | data source: aws_secretsmanager_secret |
-| data.aws_secretsmanager_secret_version.redis_user_version | data source: aws_secretsmanager_secret_version |
-
----
-
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|--------------|------|----------|:--------:|
-| <a name="input_environment"></a> environment | Environment name (e.g. `dev`, `stage`, `prod`) | `string` | n/a | yes |
-| <a name="input_redis_service_name"></a> redis_service_name | Redis service name used in naming resources | `string` | n/a | yes |
-| <a name="input_vpc_id"></a> vpc_id | VPC ID for Redis security group | `string` | n/a | yes |
-| <a name="input_subnet_ids"></a> subnet_ids | List of subnet IDs for the Redis serverless cluster | `list(string)` | n/a | yes |
-| <a name="input_redis_ports"></a> redis_ports | List of TCP ports allowed in Redis SG | `list(number)` | `[6379]` | no |
-| <a name="input_redis_ingress_cidr_blocks"></a> redis_ingress_cidr_blocks | List of CIDR blocks allowed inbound access | `list(string)` | `["0.0.0.0/0"]` | no |
-| <a name="input_redis_user_secrets"></a> redis_user_secrets | Map of Redis users, each referencing a Secrets Manager secret and access string | `map(object({ secret_name = string, access_string = string }))` | `{}` | no |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `environment` | string | n/a | Deployment environment name (e.g., dev, prod, stage) |
+| `redis_service_name` | string | n/a | Logical name for the Redis service (e.g., oms, cart, session) |
+| `vpc_id` | string | n/a | VPC ID for Redis security group |
+| `subnet_ids` | list(string) | n/a | Subnet IDs for the Redis cluster |
+| `redis_user_secrets` | map(object) | n/a | Map of Redis user names to Secrets Manager paths and access strings |
+| `redis_sg_name` | string | `"redis-sg"` | Name of the Redis security group |
+| `redis_ports` | list(number) | `[6379]` | Redis ports to allow inbound access |
+| `redis_ingress_cidr_blocks` | list(string) | `["10.0.0.0/16"]` | CIDR blocks allowed to access Redis |
 
 ---
 
 ## Outputs
 
 | Name | Description |
-|------|--------------|
-| <a name="output_redis_serverless_arn"></a> redis_serverless_arn | ARN of the Redis Serverless cluster |
-| <a name="output_redis_serverless_endpoint"></a> redis_serverless_endpoint | Endpoint address of the Redis Serverless cluster |
-
+|------|-------------|
+| `redis_cluster_name` | The name of the Redis Serverless cluster |
+| `user_group_id` | Redis user group ID containing all users |
 
 ---
+
+
