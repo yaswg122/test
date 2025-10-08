@@ -1,8 +1,8 @@
-# AWS ElasticCache Module
+# AWS Elasticache Module
 
 
 # Overview
-This module is for creating ElasticCache in AWS. This repository provides a reusable template for creating and managing AWS ElasticCache resources using Terraform or OpenTofu.
+This module provides a reusable template for creating and managing AWS ElasticCache resources using Terraform or OpenTofu.
 
 ---
 
