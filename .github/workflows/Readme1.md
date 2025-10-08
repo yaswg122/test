@@ -14,10 +14,6 @@ This Terraform module provisions an **ElastiCache Serverless cluster** (Redis) i
 Before deploying this module, the following resources must exist:
 
 - **VPC** with at least two private **subnets** in different Availability Zones.
-- Optional:
-  - **Security Group** allowing inbound traffic on port `6379` (Redis default port)
-  - **KMS Key** for encryption at rest
-  - **CloudWatch Log Group** for logging
 
 ---
 
